@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <limits.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 bool	is_min(int n, int fd)
 {
@@ -45,19 +45,3 @@ void	ft_putnbr_fd(int n, int fd)
 	ft_putnbr_fd(n / 10, fd);
 	write(fd, &digit, 1);
 }
-
-/*
-#include <stdio.h>
-
-int	main(int ac, char **av)
-{
-
-    if(ac != 2)
-    {   
-        printf("Numero argomenti errato!\n");
-        return (1);
-    }   
-        
-    ft_putnbr_fd(atoi(av[1]), 1);
-    return (0);
-}*/
