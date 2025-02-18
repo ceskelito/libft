@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf.h"
+#include <unistd.h>
+#define UP 'u'
 
 void	ft_putnbr_hex(unsigned int nbr, const char hex_case)
 {

@@ -6,8 +6,6 @@ CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 MKDIR = mkdir -p
 
-OBJS_DIR = objs
-
 FT_IS = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c
 		
 FT_LST = ft_lstadd_back.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_lstsize.c \
@@ -27,12 +25,13 @@ FT_TO = ft_atoi.c ft_itoa.c ft_tolower.c ft_toupper.c
 SOURCES = $(addprefix ft_is/, $(FT_IS)) $(addprefix ft_lst/, $(FT_LST)) \
 		$(addprefix ft_mem/, $(FT_MEM)) $(addprefix ft_put/, $(FT_PUT)) \
 		$(addprefix ft_str/, $(FT_STR)) $(addprefix ft_to/, $(FT_TO))
+		
+OBJS_DIR = objs
 
-OBJECTS = $(patsubst /%.c, $(OBJS_DIR)/%.o, $(SOURCES))
-#OBJECTS = $(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))	
+OBJECTS = $(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))
 
 $(OBJS_DIR)/%.o: %.c
-	@$(MKDIR) $(OBJS_DIR)
+	$(MKDIR) $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
@@ -44,7 +43,7 @@ clean:
 	$(RM) $(OBJECTS)
 
 fclean: clean
-	$(RM) $(NAME) 
+	$(RM) $(NAME)
 
 re: fclean all
 
